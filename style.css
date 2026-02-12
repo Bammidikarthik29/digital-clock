@@ -1,0 +1,120 @@
+:root {
+    /* Light Mode Variables */
+    --bg-color: #e0e5ec;
+    --text-color: #4a4e69;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --shadow-light: #ffffff;
+    --shadow-dark: #a3b1c6;
+    --accent-color: #9b5de5;
+}
+
+body.dark-mode {
+    /* Dark Mode Variables */
+    --bg-color: #1a1b26;
+    --text-color: #a9b1d6;
+    --glass-bg: rgba(0, 0, 0, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-light: #24283b;
+    --shadow-dark: #10111a;
+    --accent-color: #bb9af7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 
+        8px 8px 16px var(--shadow-dark), 
+        -8px -8px 16px var(--shadow-light);
+}
+
+.clock-container {
+    padding: 3rem 5rem;
+    text-align: center;
+    min-width: 400px;
+}
+
+.time {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.date {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.theme-toggle {
+    background: var(--bg-color); /* Match bg for neumorphic feel inside glass? Or keep glass */
+    /* Let's stick to glass for consistency but make it round */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    border: none; /* Reset button border */
+    outline: none;
+}
+
+.theme-toggle:hover {
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.theme-toggle:active {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), 
+                inset -4px -4px 8px var(--shadow-light);
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+.time {
+    animation: pulse 2s infinite ease-in-out;
+}
